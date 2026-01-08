@@ -11,14 +11,18 @@ const HeroSection = () => {
       {/* Floating Icons - Left Side */}
       <motion.div
         className="absolute left-0 top-1/4 w-32 md:w-48 -translate-x-1/4"
-        animate={{
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ 
+          opacity: 1, 
+          x: 0,
           y: [0, -20, 0],
           rotate: [0, 5, 0],
         }}
         transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
+          opacity: { duration: 0.8 },
+          x: { duration: 0.8 },
+          y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+          rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
         }}
       >
         <img src={chatBubble3d} alt="Chat" className="w-full h-auto" />
@@ -27,15 +31,18 @@ const HeroSection = () => {
       {/* Floating Icons - Right Side */}
       <motion.div
         className="absolute right-0 top-1/4 w-24 md:w-36 translate-x-1/4"
+        initial={{ opacity: 0, x: 100 }}
         animate={{
+          opacity: 1,
+          x: 0,
           y: [0, -15, 0],
           rotate: [0, -3, 0],
         }}
         transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
+          opacity: { duration: 0.8, delay: 0.2 },
+          x: { duration: 0.8, delay: 0.2 },
+          y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 },
+          rotate: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 },
         }}
       >
         <img src={phone3d} alt="Phone" className="w-full h-auto" />
@@ -44,18 +51,18 @@ const HeroSection = () => {
       <div className="container-large relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
           >
             Double White Label CRM, Automation and AI Agents for the World's Favorite Messaging Apps
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12"
           >
             Respond to <span className="font-bold text-foreground">Chats</span> and{" "}
@@ -77,44 +84,24 @@ const HeroSection = () => {
           className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 mt-8"
         >
           <motion.div
-            animate={{
-              y: [0, -15, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="w-24 md:w-32 lg:w-44"
           >
             <img src={whatsapp3d} alt="WhatsApp" className="w-full h-auto drop-shadow-xl" />
           </motion.div>
 
           <motion.div
-            animate={{
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5,
-            }}
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             className="w-24 md:w-32 lg:w-44"
           >
             <img src={instagram3d} alt="Instagram" className="w-full h-auto drop-shadow-xl" />
           </motion.div>
 
           <motion.div
-            animate={{
-              y: [0, -12, 0],
-            }}
-            transition={{
-              duration: 4.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="w-24 md:w-32 lg:w-44"
           >
             <img src={chatgpt3d} alt="AI" className="w-full h-auto drop-shadow-xl" />

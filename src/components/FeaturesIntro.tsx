@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 const features = [
   {
@@ -23,55 +21,81 @@ const features = [
   },
 ];
 
-const FeaturesIntro = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
+    },
+  },
+};
+
+const FeaturesIntro = () => {
   return (
     <section className="section-padding bg-background" id="overview">
-      <div className="container-large" ref={ref}>
-        <div className="text-center mb-16">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="text-primary font-semibold mb-4"
-          >
+      <div className="container-large">
+        <motion.div 
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
+          <motion.p variants={itemVariants} className="text-primary font-semibold mb-4">
             Exploding in Demand!
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            variants={itemVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-bold"
           >
             AI Assistants go far beyond simple Chatbots.
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={itemVariants}
             className="text-muted-foreground text-lg mt-4 max-w-3xl mx-auto"
           >
             They speak to your customers via <strong>Text</strong> or <strong>Voice</strong>, schedule appointments, recover abandoned carts, answer questions, qualify leads and much more. Everything you need to engage, support, and convert more, automatically and intelligently.
           </motion.p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div
+          className="grid md:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+              variants={itemVariants}
               className="text-center p-6"
             >
-              <div className="text-5xl mb-6">{feature.icon}</div>
+              <motion.div 
+                className="text-5xl mb-6"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {feature.icon}
+              </motion.div>
               <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
