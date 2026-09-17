@@ -8,7 +8,7 @@ const Navbar = () => {
   const [featuresOpen, setFeaturesOpen] = useState(false);
 
   const navLinks = [
-    { name: "Overview", href: "#overview" },
+    { name: "Overview 1", href: "#overview" },
     { name: "White Label", href: "#white-label" },
     { name: "Pricing", href: "#pricing" },
   ];
